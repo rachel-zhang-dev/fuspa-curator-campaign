@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>芙SPA · 主理人邀约</title>
+    <meta
+      name="description"
+      content="老带新 · 邀请好友成为主理人，解锁主理人礼遇（非股权投资）"
+    />
+    <style>
+      :root {
+        --bg: #fafaf8;
+        --cream: #f3eee5;
+        --text: #2a2620;
+        --muted: #8b8278;
+        --accent: #c8985e;
+        --primary: #2d2823;
+        --border: #e8e2d8;
+        --radius: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC',
+          'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .wrap {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 24px 20px 48px;
+      }
+
+      header {
+        text-align: center;
+        padding: 32px 0 24px;
+      }
+
+      .logo {
+        font-size: 13px;
+        letter-spacing: 0.35em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 12px 0 8px;
+        font-size: 1.75rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .story {
+        background: var(--cream);
+        border-radius: var(--radius);
+        padding: 20px 22px;
+        margin-bottom: 28px;
+        font-size: 0.92rem;
+        color: var(--text);
+      }
+
+      .story strong {
+        color: var(--accent);
+      }
+
+      .disclaimer {
+        margin-top: 12px;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      fieldset {
+        border: none;
+        margin: 0 0 24px;
+        padding: 0;
+      }
+
+      legend,
+      .label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+      }
+
+      .hint {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .options label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 14px;
+        margin-bottom: 8px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.92rem;
+      }
+
+      .options label:has(input:checked) {
+        border-color: var(--accent);
+        background: #fffdf9;
+      }
+
+      input[type='radio'],
+      input[type='checkbox'] {
+        margin-top: 3px;
+        accent-color: var(--primary);
+      }
+
+      input[type='text'],
+      input[type='tel'],
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: inherit;
+        background: #fff;
+      }
+
+      textarea {
+        min-height: 88px;
+        resize: vertical;
+      }
+
+      .required::after {
+        content: ' *';
+        color: var(--accent);
+      }
+
+      button[type='submit'] {
+        width: 100%;
+        padding: 16px;
+        margin-top: 8px;
+        border: none;
+        border-radius: 10px;
+        background: var(--primary);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        letter-spacing: 0.08em;
+      }
+
+      button[type='submit']:hover {
+        opacity: 0.92;
+      }
+
+      button[type='submit']:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 32px;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      /* FormSubmit honeypot */
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <p class="logo">FU SPA</p>
+        <h1>成为芙SPA主理人</h1>
+        <p class="lead">老带新 · 答几道题，解锁主理人礼遇</p>
+      </header>
+
+      <div class="story">
+        <p>
+          在芙SPA，我们相信每一位常客都是品牌的共建者。若你愿意把这份松弛与治愈带给身边的朋友，欢迎通过下方问答了解<strong>主理人礼遇</strong>——含专属称谓、到店权益及活动实物（以实际发放为准）。
+        </p>
+        <p class="disclaimer">
+          说明：主理人礼遇为品牌回馈，不构成股权投资，不承诺投资收益或分红。
+        </p>
+      </div>
+
+      <!--
+        ⚠️ 部署前必改：
+        1. 把 action 里的邮箱换成你的收件邮箱
+        2. 把 _next 里的域名换成你的 GitHub Pages 地址（见 README）
+      -->
+      <form
+        action="https://formsubmit.co/ruiping.zhang.rachel@gmail.com"
+        method="POST"
+      >
+        <input type="hidden" name="_subject" value="【芙SPA】主理人邀约问卷" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+        <!-- 提交成功后跳转；部署后改成你的 Pages 地址 -->
+        <input
+          type="hidden"
+          name="_next"
+          value="https://rachel-zhang-dev.github.io/fuspa-curator-campaign/thank-you.html"
+        />
+
+        <fieldset>
+          <legend class="label required">1. 你是如何认识芙SPA的？</legend>
+          <div class="options">
+            <label
+              ><input type="radio" name="如何认识" value="朋友推荐" required />
+              朋友推荐</label
+            >
+            <label
+              ><input type="radio" name="如何认识" value="路过到店" />
+              路过到店</label
+            >
+            <label
+              ><input type="radio" name="如何认识" value="社交媒体" />
+              社交媒体</label
+            >
+            <label
+              ><input type="radio" name="如何认识" value="其他" /> 其他</label
+            >
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="label required">2. 哪一点最打动你？</legend>
+          <div class="options">
+            <label
+              ><input type="radio" name="打动点" value="手法专业" required />
+              手法专业</label
+            >
+            <label
+              ><input type="radio" name="打动点" value="环境氛围" />
+              环境氛围</label
+            >
+            <label
+              ><input type="radio" name="打动点" value="性价比" /> 性价比</label
+            >
+            <label
+              ><input type="radio" name="打动点" value="技师服务" />
+              技师服务</label
+            >
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="label required">
+            3. 你愿意邀请好友成为主理人吗？
+          </legend>
+          <div class="options">
+            <label
+              ><input type="radio" name="邀请意愿" value="非常愿意" required />
+              非常愿意</label
+            >
+            <label
+              ><input type="radio" name="邀请意愿" value="可以考虑" />
+              可以考虑</label
+            >
+            <label
+              ><input type="radio" name="邀请意愿" value="暂时不需要" />
+              暂时不需要</label
+            >
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="label">
+            4. 你更倾向的推荐方式 <span class="hint">（可多选）</span>
+          </legend>
+          <div class="options">
+            <label
+              ><input type="checkbox" name="推荐方式" value="私下推荐给朋友" />
+              私下推荐给朋友</label
+            >
+            <label
+              ><input type="checkbox" name="推荐方式" value="发朋友圈" />
+              发朋友圈</label
+            >
+            <label
+              ><input type="checkbox" name="推荐方式" value="带朋友到店" />
+              带朋友到店</label
+            >
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="label">
+            5. 推荐人信息 <span class="hint">（老带新选填）</span>
+          </legend>
+          <input
+            type="text"
+            name="推荐人姓名"
+            placeholder="推荐人姓名"
+            autocomplete="name"
+          />
+          <p style="height: 8px"></p>
+          <input
+            type="tel"
+            name="推荐人手机"
+            placeholder="推荐人手机号"
+            autocomplete="tel"
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend class="label required">6. 你的姓名</legend>
+          <input type="text" name="姓名" required placeholder="请填写真实姓名" />
+        </fieldset>
+
+        <fieldset>
+          <legend class="label required">7. 你的手机号</legend>
+          <input
+            type="tel"
+            name="手机"
+            required
+            placeholder="用于联系与权益发放"
+            pattern="[0-9]{11}"
+            title="请输入11位手机号"
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend class="label">
+            8. 收货地址 <span class="hint">（如需寄送实物礼遇请填写）</span>
+          </legend>
+          <textarea
+            name="收货地址"
+            placeholder="省市区 + 详细地址 + 收件人"
+          ></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend class="label">9. 还想对我们说的一句话</legend>
+          <textarea name="留言" placeholder="选填"></textarea>
+        </fieldset>
+
+        <button type="submit">提交，申请主理人礼遇</button>
+      </form>
+
+      <footer>芙SPA · 主理人邀约活动</footer>
+    </div>
+  </body>
+</html>
