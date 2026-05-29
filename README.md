@@ -1,76 +1,137 @@
-# 芙SPA · 主理人邀约问卷（GitHub Pages + FormSubmit）
+# 芙SPA · 长楹首店主理人体验计划（GitHub Pages + EmailJS）
 
-静态问卷页，提交后 **每份答卷发一封邮件** 到你配置的邮箱。
+静态问卷页，提交后通过 **EmailJS** 把答卷以邮件形式发到指定收件箱（默认 `122530385@qq.com`）。
 
-## 部署前必改（2 处）
+- **页面 UI**：完全自定义（芙 SPA 暖色风），不依赖第三方表单平台样式
+- **收数方式**：EmailJS 免费版 **每月 200 封** 邮件，足够单次邀约活动
+- **国内可用**：EmailJS 走你自己授权的邮箱 SMTP，不会卡 Cloudflare 海外服务
 
-打开 `index.html` 确认邮箱与 `_next` 地址（已配置为当前仓库）：
+---
 
-1. **收件邮箱**（约第 168 行）
+## 一次性配置：EmailJS（约 10 分钟）
 
-   ```html
-   action="https://formsubmit.co/你的邮箱@example.com"
-   ```
+### 1. 注册账号
 
-2. **提交成功跳转地址**（`_next`，约第 175 行）
+打开 https://www.emailjs.com → Sign Up（用 Gmail 一键登录最快）。
 
-   改成你的 GitHub Pages 完整地址，例如：
+### 2. 添加 Email Service（推荐用 Gmail）
 
-   ```html
-   value="https://rachel-zhang-dev.github.io/fuspa-curator-campaign/thank-you.html"
-   ```
+后台左侧 **Email Services → Add New Service**。
 
-   仓库名若不是 `fuspa-curator-campaign`，请同步修改。
+- 选 **Gmail**
+- 点 **Connect Account** → 用 `ruiping.zhang.rachel@gmail.com` 授权（一键 OAuth）
+- 保存后会得到一个 **Service ID**，例如 `service_abc1234`
+- 复制下来备用
 
-## 推到 GitHub
+> 也可以用 QQ 邮箱（Other / SMTP），但需要在 QQ 邮箱后台开启 SMTP 并获取**授权码**，比 Gmail 多两步。推荐 Gmail 发送 → 收件人填 QQ 邮箱。
+
+### 3. 创建 Email Template
+
+左侧 **Email Templates → Create New Template**。
+
+**Settings 标签：**
+
+| 字段 | 填什么 |
+|------|--------|
+| Template Name | `fuspa-curator` |
+| **To Email** | `122530385@qq.com` |
+| From Name | `芙SPA 长楹店问卷` |
+| Reply To | （留空或填回信邮箱） |
+| Subject | `{{subject}}` |
+
+**Content 标签**（直接粘贴下面这段）：
+
+```
+新的主理人问卷答卷
+
+提交时间：{{submitted_at}}
+姓名：{{respondent_name}}
+手机：{{respondent_phone}}
+
+----------------------------------------
+{{content}}
+----------------------------------------
+
+来自：芙SPA 长楹首店主理人体验计划
+```
+
+保存后会得到一个 **Template ID**，例如 `template_xyz5678`，复制下来备用。
+
+### 4. 获取 Public Key
+
+左侧 **Account → General**，找到 **Public Key**，例如 `aBcDeFg123HiJkL`，复制下来。
+
+### 5. 把 3 个 ID 填进代码
+
+打开 `index.html`，找到这段（约第 510 行附近）：
+
+```js
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+```
+
+替换为你刚拿到的三个值，例如：
+
+```js
+const EMAILJS_PUBLIC_KEY = 'aBcDeFg123HiJkL';
+const EMAILJS_SERVICE_ID = 'service_abc1234';
+const EMAILJS_TEMPLATE_ID = 'template_xyz5678';
+```
+
+### 6. 推到 GitHub
 
 ```bash
 cd campaign-curator
-git init
-git add index.html thank-you.html README.md
-git commit -m "Add curator campaign questionnaire"
+git add index.html
+git commit -m "Configure EmailJS credentials"
+git push origin main
 ```
 
-仓库：https://github.com/rachel-zhang-dev/fuspa-curator-campaign
+等 1～2 分钟 Pages 重新部署。
 
-```bash
-git remote add origin git@github.com:rachel-zhang-dev/fuspa-curator-campaign.git
-git branch -M main
-git push -u origin main
-```
+### 7. 测试
 
-若仓库已存在，把 `origin` 换成你的地址即可。
+1. 用浏览器打开问卷页填一份  
+2. 提交后应跳到「感谢页」  
+3. 去 `122530385@qq.com` 看邮件（可能要等几秒~1 分钟）  
+4. **若 QQ 邮箱看不到 → 翻垃圾邮件 / 订阅邮件**
 
-## 开启 GitHub Pages
+---
 
-1. 仓库 → **Settings** → **Pages**
-2. **Source**：Deploy from a branch
-3. **Branch**：`main` / **Folder**：`/ (root)`
-4. 保存后等 1～3 分钟，访问：
+## 主要文件
 
-   `https://rachel-zhang-dev.github.io/fuspa-curator-campaign/`
+| 文件 | 作用 |
+|------|------|
+| `index.html` | 问卷页（12 题 + 联系方式） |
+| `thank-you.html` | 提交成功页 |
+| `README.md` | 本文件 |
 
-## 激活 FormSubmit（首次必做）
-
-1. 改好 `index.html` 里的邮箱并部署 Pages
-2. 用浏览器 **自己提交一次** 测试问卷
-3. 去邮箱查 **FormSubmit 发来的确认邮件**，点链接激活
-4. 之后他人提交才会稳定发到你的邮箱
-
-邮件主题一般为：`【芙SPA】主理人邀约问卷`，正文为表格字段。
-
-## 对外二维码
-
-用任意「链接生成二维码」工具，填入 Pages 首页地址即可，例如：
-
-`https://rachel-zhang-dev.github.io/fuspa-curator-campaign/`
+---
 
 ## 修改题目
 
-直接编辑 `index.html` 里各 `fieldset`，`name` 即邮件里的字段名。改完 `git push` 即可，无需改 FormSubmit 配置。
+直接编辑 `index.html` 里各 `fieldset`：
+
+- `name` 即邮件正文里显示的字段名
+- 多选用 `type="checkbox"` 同名重复
+- 单选用 `type="radio"` 同名重复
+- 文本用 `<textarea>` 或 `<input>`
+
+改完 `git push` 即可，**无需重配 EmailJS**（模板只用到 `{{content}}` 这个汇总字段）。
+
+---
 
 ## 注意
 
-- 免费、无后台列表，答卷在 **邮箱** 里；量大时可转发或抄送到表格
-- FormSubmit 为海外服务，国内偶发慢；提交后若长时间无反应，可重试或换网络
-- 勿把含真实用户数据的导出文件 commit 到 GitHub
+- EmailJS 的 Public Key、Service ID、Template ID 会出现在公开仓库的前端代码里 —— 这是设计上允许的（它们是「公开身份」，真正的鉴权在 EmailJS 后台限制 Domain / Rate Limit）
+- 建议在 EmailJS 后台 **Account → Security** 开启 **Allowed Origins**，只允许 `https://rachel-zhang-dev.github.io` 访问，防止别人盗用配额
+- 免费版 200 封/月，超出会暂停；对邀约制小范围活动一般够
+- 不要把含真实用户数据的导出文件 commit 到 GitHub
+
+---
+
+## 链接
+
+- 在线地址：https://rachel-zhang-dev.github.io/fuspa-curator-campaign/
+- 仓库：https://github.com/rachel-zhang-dev/fuspa-curator-campaign

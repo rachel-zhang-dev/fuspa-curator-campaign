@@ -242,6 +242,14 @@
       .hidden {
         display: none;
       }
+
+      .error-msg {
+        margin: 12px 0 0;
+        text-align: center;
+        color: #c0392b;
+        font-size: 0.88rem;
+        min-height: 1.2em;
+      }
     </style>
   </head>
   <body>
@@ -273,28 +281,13 @@
         <p class="signature">—— 芙SPA长楹店</p>
       </section>
 
-      <form
-        action="https://formsubmit.co/122530385@qq.com"
-        method="POST"
-      >
-        <input
-          type="hidden"
-          name="_subject"
-          value="【芙SPA】长楹首店主理人体验计划 · 邀约问卷"
-        />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
+      <form id="curatorForm">
         <input
           type="text"
           name="_gotcha"
           class="hidden"
           tabindex="-1"
           autocomplete="off"
-        />
-        <input
-          type="hidden"
-          name="_next"
-          value="https://rachel-zhang-dev.github.io/fuspa-curator-campaign/thank-you.html"
         />
 
         <!-- ============== 第一部分 ============== -->
@@ -644,10 +637,79 @@
           />
         </fieldset>
 
-        <button type="submit">提交，加入主理人共创</button>
+        <button type="submit" id="submitBtn">提交，加入主理人共创</button>
+        <p id="errorMsg" class="error-msg"></p>
       </form>
 
       <footer>FU SPA · 长楹首店主理人体验计划</footer>
     </div>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      // ============ EmailJS 配置（部署前填写） ============
+      const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+      const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+      const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+      // ===================================================
+
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+      const form = document.getElementById('curatorForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorMsg.textContent = '';
+
+        // 蜜罐：被机器人填了就静默放过
+        if (form.querySelector('input[name="_gotcha"]').value) {
+          window.location.href = './thank-you.html';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = '正在提交…';
+
+        try {
+          // 收集表单数据，多选合并
+          const fd = new FormData(form);
+          const grouped = {};
+          for (const [k, v] of fd.entries()) {
+            if (k.startsWith('_')) continue;
+            if (!v) continue;
+            if (grouped[k]) grouped[k] += '、' + v;
+            else grouped[k] = v;
+          }
+
+          // 拼成易读的邮件正文
+          const lines = Object.entries(grouped)
+            .map(([k, v]) => `${k.replace(/^Q\d+_/, '')}：${v}`)
+            .join('\n');
+
+          const submittedAt = new Date().toLocaleString('zh-CN', {
+            timeZone: 'Asia/Shanghai',
+            hour12: false,
+          });
+
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            subject: '【芙SPA】长楹首店主理人体验计划 · 邀约问卷',
+            content: lines,
+            submitted_at: submittedAt,
+            respondent_name: grouped['姓名_称呼'] || '未填',
+            respondent_phone: grouped['手机号'] || '未填',
+          });
+
+          window.location.href = './thank-you.html';
+        } catch (err) {
+          console.error(err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = '提交，加入主理人共创';
+          errorMsg.textContent =
+            '提交失败，请稍后再试，或将以上信息发送至门店微信。';
+        }
+      });
+    </script>
   </body>
 </html>
