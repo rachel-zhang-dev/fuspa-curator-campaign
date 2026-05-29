@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>芙SPA · 主理人邀约</title>
+    <title>芙SPA · 长楹首店主理人体验计划｜邀约问卷</title>
     <meta
       name="description"
-      content="老带新 · 邀请好友成为主理人，解锁主理人礼遇（非股权投资）"
+      content="芙SPA 长楹首店主理人体验计划，小范围邀约共创。"
     />
     <style>
       :root {
         --bg: #fafaf8;
         --cream: #f3eee5;
+        --cream-soft: #f7f3eb;
         --text: #2a2620;
         --muted: #8b8278;
         --accent: #c8985e;
@@ -24,83 +25,116 @@
         box-sizing: border-box;
       }
 
+      html,
       body {
         margin: 0;
+        padding: 0;
+      }
+
+      body {
         font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC',
           'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
         background: var(--bg);
         color: var(--text);
-        line-height: 1.6;
+        line-height: 1.75;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
       }
 
       .wrap {
         max-width: 640px;
         margin: 0 auto;
-        padding: 24px 20px 48px;
+        padding: 28px 20px 56px;
       }
 
       header {
         text-align: center;
-        padding: 32px 0 24px;
+        padding: 24px 0 8px;
       }
 
       .logo {
-        font-size: 13px;
-        letter-spacing: 0.35em;
+        font-size: 12px;
+        letter-spacing: 0.42em;
         color: var(--muted);
-        text-transform: uppercase;
       }
 
       h1 {
-        margin: 12px 0 8px;
-        font-size: 1.75rem;
+        margin: 14px 0 6px;
+        font-size: 1.55rem;
         font-weight: 600;
         letter-spacing: 0.02em;
+        line-height: 1.4;
       }
 
-      .lead {
+      .subtitle {
         margin: 0;
         color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .intro {
+        background: var(--cream);
+        border-radius: var(--radius);
+        padding: 22px 22px;
+        margin: 28px 0 24px;
         font-size: 0.95rem;
       }
 
-      .story {
-        background: var(--cream);
-        border-radius: var(--radius);
-        padding: 20px 22px;
-        margin-bottom: 28px;
-        font-size: 0.92rem;
-        color: var(--text);
+      .intro p {
+        margin: 0 0 12px;
       }
 
-      .story strong {
+      .intro p:last-child {
+        margin-bottom: 0;
+      }
+
+      .intro .accent {
         color: var(--accent);
+        font-weight: 600;
       }
 
-      .disclaimer {
-        margin-top: 12px;
-        font-size: 0.8rem;
+      .intro .signature {
+        margin-top: 16px;
+        text-align: right;
         color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .section-title {
+        margin: 36px 0 18px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+        font-weight: 600;
       }
 
       fieldset {
         border: none;
-        margin: 0 0 24px;
+        margin: 0 0 22px;
         padding: 0;
       }
 
       legend,
-      .label {
+      .qlabel {
         display: block;
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 0.98rem;
         margin-bottom: 10px;
+        line-height: 1.55;
+      }
+
+      .qlabel .qnum {
+        color: var(--accent);
+        margin-right: 6px;
       }
 
       .hint {
         font-weight: 400;
         color: var(--muted);
-        font-size: 0.85rem;
+        font-size: 0.82rem;
+        margin-left: 4px;
       }
 
       .options label {
@@ -113,7 +147,9 @@
         border: 1px solid var(--border);
         border-radius: 10px;
         cursor: pointer;
-        font-size: 0.92rem;
+        font-size: 0.94rem;
+        line-height: 1.55;
+        transition: border-color 0.15s, background 0.15s;
       }
 
       .options label:has(input:checked) {
@@ -121,14 +157,28 @@
         background: #fffdf9;
       }
 
+      .options .opt-title {
+        font-weight: 500;
+      }
+
+      .options .opt-desc {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-weight: 400;
+        margin-top: 2px;
+      }
+
       input[type='radio'],
       input[type='checkbox'] {
-        margin-top: 3px;
+        margin-top: 5px;
         accent-color: var(--primary);
+        flex-shrink: 0;
       }
 
       input[type='text'],
       input[type='tel'],
+      input[type='date'],
       textarea {
         width: 100%;
         padding: 12px 14px;
@@ -137,11 +187,20 @@
         font-size: 1rem;
         font-family: inherit;
         background: #fff;
+        color: var(--text);
       }
 
       textarea {
-        min-height: 88px;
+        min-height: 92px;
         resize: vertical;
+        line-height: 1.6;
+      }
+
+      .other-input {
+        margin-top: 8px;
+        margin-left: 26px;
+        max-width: calc(100% - 26px);
+        font-size: 0.9rem;
       }
 
       .required::after {
@@ -151,8 +210,8 @@
 
       button[type='submit'] {
         width: 100%;
-        padding: 16px;
-        margin-top: 8px;
+        padding: 17px;
+        margin-top: 12px;
         border: none;
         border-radius: 10px;
         background: var(--primary);
@@ -174,12 +233,12 @@
 
       footer {
         text-align: center;
-        margin-top: 32px;
-        font-size: 0.8rem;
+        margin-top: 36px;
+        font-size: 0.78rem;
         color: var(--muted);
+        letter-spacing: 0.05em;
       }
 
-      /* FormSubmit honeypot */
       .hidden {
         display: none;
       }
@@ -188,176 +247,407 @@
   <body>
     <div class="wrap">
       <header>
-        <p class="logo">FU SPA</p>
-        <h1>成为芙SPA主理人</h1>
-        <p class="lead">老带新 · 答几道题，解锁主理人礼遇</p>
+        <p class="logo">FU SPA · CHANGYING</p>
+        <h1>长楹首店主理人体验计划</h1>
+        <p class="subtitle">邀约问卷 · 约 3 分钟</p>
       </header>
 
-      <div class="story">
+      <section class="intro">
+        <p>很开心，在芙SPA与您相遇。</p>
         <p>
-          在芙SPA，我们相信每一位常客都是品牌的共建者。若你愿意把这份松弛与治愈带给身边的朋友，欢迎通过下方问答了解<strong>主理人礼遇</strong>——含专属称谓、到店权益及活动实物（以实际发放为准）。
+          长楹店，是芙SPA的第一家店。从它诞生开始，我们就在思考一件事：如果一家
+          SPA，不只是做项目，而是真正帮助人恢复状态，它应该长成什么样？
         </p>
-        <p class="disclaimer">
-          说明：主理人礼遇为品牌回馈，不构成股权投资，不承诺投资收益或分红。
+        <p>
+          因此，我们决定邀请一小部分真正认可芙SPA恢复体验的顾客，一起参与：
+          <span class="accent">「芙SPA主理人体验计划」</span>
         </p>
-      </div>
+        <p>
+          这不是会员活动，也不是推荐有礼。而是一份关于
+          <em>"一起做更好的芙SPA"</em> 的共创邀请。
+        </p>
+        <p>
+          我们希望下一家芙SPA，不只是由我们决定。也能带着第一批顾客的声音，一起成长。
+        </p>
+        <p>若您愿意，欢迎留下您的想法。</p>
+        <p class="signature">—— 芙SPA长楹店</p>
+      </section>
 
-      <!--
-        ⚠️ 部署前必改：
-        1. 把 action 里的邮箱换成你的收件邮箱
-        2. 把 _next 里的域名换成你的 GitHub Pages 地址（见 README）
-      -->
       <form
         action="https://formsubmit.co/ruiping.zhang.rachel@gmail.com"
         method="POST"
       >
-        <input type="hidden" name="_subject" value="【芙SPA】主理人邀约问卷" />
+        <input
+          type="hidden"
+          name="_subject"
+          value="【芙SPA】长楹首店主理人体验计划 · 邀约问卷"
+        />
         <input type="hidden" name="_template" value="table" />
-        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-        <!-- 提交成功后跳转；部署后改成你的 Pages 地址 -->
+        <input type="hidden" name="_captcha" value="false" />
+        <input
+          type="text"
+          name="_gotcha"
+          class="hidden"
+          tabindex="-1"
+          autocomplete="off"
+        />
         <input
           type="hidden"
           name="_next"
           value="https://rachel-zhang-dev.github.io/fuspa-curator-campaign/thank-you.html"
         />
 
-        <fieldset>
-          <legend class="label required">1. 你是如何认识芙SPA的？</legend>
-          <div class="options">
-            <label
-              ><input type="radio" name="如何认识" value="朋友推荐" required />
-              朋友推荐</label
-            >
-            <label
-              ><input type="radio" name="如何认识" value="路过到店" />
-              路过到店</label
-            >
-            <label
-              ><input type="radio" name="如何认识" value="社交媒体" />
-              社交媒体</label
-            >
-            <label
-              ><input type="radio" name="如何认识" value="其他" /> 其他</label
-            >
-          </div>
-        </fieldset>
+        <!-- ============== 第一部分 ============== -->
+        <p class="section-title">第一部分 · 关于你与芙SPA</p>
 
         <fieldset>
-          <legend class="label required">2. 哪一点最打动你？</legend>
-          <div class="options">
-            <label
-              ><input type="radio" name="打动点" value="手法专业" required />
-              手法专业</label
-            >
-            <label
-              ><input type="radio" name="打动点" value="环境氛围" />
-              环境氛围</label
-            >
-            <label
-              ><input type="radio" name="打动点" value="性价比" /> 性价比</label
-            >
-            <label
-              ><input type="radio" name="打动点" value="技师服务" />
-              技师服务</label
-            >
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend class="label required">
-            3. 你愿意邀请好友成为主理人吗？
+          <legend class="qlabel required">
+            <span class="qnum">1.</span>这是您第几次来到芙SPA？
           </legend>
           <div class="options">
             <label
-              ><input type="radio" name="邀请意愿" value="非常愿意" required />
-              非常愿意</label
+              ><input type="radio" name="Q1_到店次数" value="第1-3次" required />
+              <span class="opt-title">第 1-3 次</span></label
             >
             <label
-              ><input type="radio" name="邀请意愿" value="可以考虑" />
-              可以考虑</label
+              ><input type="radio" name="Q1_到店次数" value="第4-6次" />
+              <span class="opt-title">第 4-6 次</span></label
             >
             <label
-              ><input type="radio" name="邀请意愿" value="暂时不需要" />
-              暂时不需要</label
+              ><input type="radio" name="Q1_到店次数" value="第7-12次" />
+              <span class="opt-title">第 7-12 次</span></label
+            >
+            <label
+              ><input type="radio" name="Q1_到店次数" value="12次以上" />
+              <span class="opt-title">12 次以上</span></label
             >
           </div>
         </fieldset>
 
         <fieldset>
-          <legend class="label">
-            4. 你更倾向的推荐方式 <span class="hint">（可多选）</span>
+          <legend class="qlabel required">
+            <span class="qnum">2.</span>在日常生活里，您更容易出现哪一种累？
+            <span class="hint">（可多选）</span>
+          </legend>
+          <div class="options">
+            <label>
+              <input type="checkbox" name="Q2_累的类型" value="石头累" />
+              <span
+                ><span class="opt-title">石头累</span>
+                <span class="opt-desc">肩颈腰背像石头一样硬，怎么休息都不松</span></span
+              >
+            </label>
+            <label>
+              <input type="checkbox" name="Q2_累的类型" value="关机难" />
+              <span
+                ><span class="opt-title">关机难</span>
+                <span class="opt-desc">明明很累，却停不下来、睡不踏实</span></span
+              >
+            </label>
+            <label>
+              <input type="checkbox" name="Q2_累的类型" value="没电累" />
+              <span
+                ><span class="opt-title">没电累</span>
+                <span class="opt-desc">整个人像没电一样，只想回血</span></span
+              >
+            </label>
+            <label>
+              <input type="checkbox" name="Q2_累的类型" value="掏空累" />
+              <span
+                ><span class="opt-title">掏空累</span>
+                <span class="opt-desc">身体还有电，但被人和事消耗得很厉害</span></span
+              >
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="qlabel required">
+            <span class="qnum">3.</span>在芙SPA，哪一个瞬间让您觉得："这里和普通
+            SPA 不太一样。" <span class="hint">（可多选）</span>
           </legend>
           <div class="options">
             <label
-              ><input type="checkbox" name="推荐方式" value="私下推荐给朋友" />
-              私下推荐给朋友</label
+              ><input type="checkbox" name="Q3_不一样的瞬间" value="没有被推销，很轻松" />
+              <span class="opt-title">没有被推销，很轻松</span></label
             >
             <label
-              ><input type="checkbox" name="推荐方式" value="发朋友圈" />
-              发朋友圈</label
+              ><input type="checkbox" name="Q3_不一样的瞬间" value="做完身体真的轻一点" />
+              <span class="opt-title">做完身体真的轻一点</span></label
             >
             <label
-              ><input type="checkbox" name="推荐方式" value="带朋友到店" />
-              带朋友到店</label
+              ><input type="checkbox" name="Q3_不一样的瞬间" value="精油和体验感不同" />
+              <span class="opt-title">精油和体验感不同</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q3_不一样的瞬间" value="被认真对待" />
+              <span class="opt-title">被认真对待</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q3_不一样的瞬间" value="环境让人容易放松" />
+              <span class="opt-title">环境让人容易放松</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q3_不一样的瞬间" value="像找到一个恢复自己的地方" />
+              <span class="opt-title">像找到一个恢复自己的地方</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q3_不一样的瞬间" value="其他" />
+              <span class="opt-title">其他</span></label
             >
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend class="label">
-            5. 推荐人信息 <span class="hint">（老带新选填）</span>
-          </legend>
           <input
             type="text"
-            name="推荐人姓名"
-            placeholder="推荐人姓名"
-            autocomplete="name"
+            name="Q3_不一样的瞬间_其他"
+            class="other-input"
+            placeholder="其他：可补充"
           />
-          <p style="height: 8px"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="qlabel required">
+            <span class="qnum">4.</span>您对芙SPA的第一印象，更接近哪一种？
+            <span class="hint">（可多选）</span>
+          </legend>
+          <div class="options">
+            <label
+              ><input type="checkbox" name="Q4_第一印象" value="服务细致、体验舒服" />
+              <span class="opt-title">服务细致、体验舒服</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q4_第一印象" value="无推销，很轻松" />
+              <span class="opt-title">无推销，很轻松</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q4_第一印象" value="做完状态真的有变化" />
+              <span class="opt-title">做完状态真的有变化</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q4_第一印象" value="精油品质和体验感不错" />
+              <span class="opt-title">精油品质和体验感不错</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q4_第一印象" value="和传统SPA不太一样" />
+              <span class="opt-title">和传统 SPA 不太一样</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q4_第一印象" value="其他" />
+              <span class="opt-title">其他</span></label
+            >
+          </div>
           <input
-            type="tel"
-            name="推荐人手机"
-            placeholder="推荐人手机号"
-            autocomplete="tel"
+            type="text"
+            name="Q4_第一印象_其他"
+            class="other-input"
+            placeholder="其他：可补充"
           />
         </fieldset>
 
         <fieldset>
-          <legend class="label required">6. 你的姓名</legend>
-          <input type="text" name="姓名" required placeholder="请填写真实姓名" />
+          <legend class="qlabel required">
+            <span class="qnum">5.</span>如果坚持做芙SPA，您觉得自己的状态是否有改善？
+          </legend>
+          <div class="options">
+            <label
+              ><input type="radio" name="Q5_状态改善" value="好转一点点" required />
+              <span class="opt-title">好转一点点</span></label
+            >
+            <label
+              ><input type="radio" name="Q5_状态改善" value="好转很多" />
+              <span class="opt-title">好转很多</span></label
+            >
+            <label
+              ><input type="radio" name="Q5_状态改善" value="某些累的状态明显缓解" />
+              <span class="opt-title">某些累的状态明显缓解</span></label
+            >
+            <label
+              ><input type="radio" name="Q5_状态改善" value="还在体验观察中" />
+              <span class="opt-title">还在体验观察中</span></label
+            >
+          </div>
         </fieldset>
 
         <fieldset>
-          <legend class="label required">7. 你的手机号</legend>
-          <input
-            type="tel"
-            name="手机"
-            required
-            placeholder="用于联系与权益发放"
-            pattern="[0-9]{11}"
-            title="请输入11位手机号"
-          />
+          <legend class="qlabel required">
+            <span class="qnum">6.</span>您一般多久来一次芙SPA？
+          </legend>
+          <div class="options">
+            <label
+              ><input type="radio" name="Q6_频率" value="3-5天" required />
+              <span class="opt-title">3-5 天</span></label
+            >
+            <label
+              ><input type="radio" name="Q6_频率" value="7-10天" />
+              <span class="opt-title">7-10 天</span></label
+            >
+            <label
+              ><input type="radio" name="Q6_频率" value="11-20天" />
+              <span class="opt-title">11-20 天</span></label
+            >
+            <label
+              ><input type="radio" name="Q6_频率" value="一个月内" />
+              <span class="opt-title">一个月内</span></label
+            >
+            <label
+              ><input type="radio" name="Q6_频率" value="不固定" />
+              <span class="opt-title">不固定</span></label
+            >
+          </div>
         </fieldset>
 
+        <!-- ============== 第二部分 ============== -->
+        <p class="section-title">第二部分 · 关于下一家芙SPA</p>
+
         <fieldset>
-          <legend class="label">
-            8. 收货地址 <span class="hint">（如需寄送实物礼遇请填写）</span>
+          <legend class="qlabel required">
+            <span class="qnum">7.</span>作为第一批体验顾客，您认为下一家芙SPA最需要改善的是什么？
           </legend>
           <textarea
-            name="收货地址"
-            placeholder="省市区 + 详细地址 + 收件人"
+            name="Q7_下一家需要改善"
+            required
+            placeholder="请写下您的真实想法"
           ></textarea>
         </fieldset>
 
         <fieldset>
-          <legend class="label">9. 还想对我们说的一句话</legend>
-          <textarea name="留言" placeholder="选填"></textarea>
+          <legend class="qlabel">
+            <span class="qnum">8.</span>如果下一家芙SPA由您参与共创，您最希望增加什么？
+          </legend>
+          <textarea
+            name="Q8_希望增加"
+            placeholder="项目 / 体验 / 空间 / 服务，都可以"
+          ></textarea>
         </fieldset>
 
-        <button type="submit">提交，申请主理人礼遇</button>
+        <fieldset>
+          <legend class="qlabel">
+            <span class="qnum">9.</span>芙SPA下一家店，您希望开在哪里？
+          </legend>
+          <textarea
+            name="Q9_希望开在哪"
+            placeholder="商圈、地标、社区，越具体越好"
+          ></textarea>
+        </fieldset>
+
+        <!-- ============== 第三部分 ============== -->
+        <p class="section-title">第三部分 · 关于主理人体验席</p>
+
+        <fieldset>
+          <legend class="qlabel required">
+            <span class="qnum">10.</span>如果拥有 2 个「恢复搭子体验邀请席」，您最想分享给谁？
+            <span class="hint">（可多选）</span>
+          </legend>
+          <div class="options">
+            <label
+              ><input type="checkbox" name="Q10_分享给谁" value="家人" />
+              <span class="opt-title">家人</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q10_分享给谁" value="闺蜜" />
+              <span class="opt-title">闺蜜</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q10_分享给谁" value="同事" />
+              <span class="opt-title">同事</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q10_分享给谁" value="朋友" />
+              <span class="opt-title">朋友</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q10_分享给谁" value="其他" />
+              <span class="opt-title">其他</span></label
+            >
+          </div>
+          <input
+            type="text"
+            name="Q10_分享给谁_其他"
+            class="other-input"
+            placeholder="其他：可补充"
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend class="qlabel required">
+            <span class="qnum">11.</span>如果进入芙SPA主理人体验计划，您更期待哪些专属权益？
+            <span class="hint">（可多选）</span>
+          </legend>
+          <div class="options">
+            <label
+              ><input type="checkbox" name="Q11_期待权益" value="恢复搭子邀请席" />
+              <span class="opt-title">恢复搭子邀请席</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q11_期待权益" value="新精油、新手法、新项目优先体验" />
+              <span class="opt-title">新精油、新手法、新项目优先体验</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q11_期待权益" value="芙SPA优先预约权" />
+              <span class="opt-title">芙SPA 优先预约权</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q11_期待权益" value="限定产品优先锁定权" />
+              <span class="opt-title">限定产品优先锁定权</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q11_期待权益" value="每月一次体验升级权益" />
+              <span class="opt-title">每月一次体验升级权益</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q11_期待权益" value="参与下一家店共创讨论" />
+              <span class="opt-title">参与下一家店共创讨论</span></label
+            >
+            <label
+              ><input type="checkbox" name="Q11_期待权益" value="其他" />
+              <span class="opt-title">其他</span></label
+            >
+          </div>
+          <input
+            type="text"
+            name="Q11_期待权益_其他"
+            class="other-input"
+            placeholder="其他：可补充"
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend class="qlabel required">
+            <span class="qnum">12.</span>主理人生日月，将收到芙SPA准备的小小心意。请留下您的生日：
+          </legend>
+          <input type="date" name="Q12_生日" required />
+        </fieldset>
+
+        <!-- 联系方式：发实物/邀约必备 -->
+        <p class="section-title">联系方式 · 仅用于权益发放</p>
+
+        <fieldset>
+          <legend class="qlabel required">您的称呼</legend>
+          <input
+            type="text"
+            name="姓名_称呼"
+            required
+            placeholder="便于我们与您联系"
+            autocomplete="name"
+          />
+        </fieldset>
+
+        <fieldset>
+          <legend class="qlabel required">手机号</legend>
+          <input
+            type="tel"
+            name="手机号"
+            required
+            placeholder="11 位手机号"
+            pattern="[0-9]{11}"
+            title="请输入 11 位手机号"
+            autocomplete="tel"
+          />
+        </fieldset>
+
+        <button type="submit">提交，加入主理人共创</button>
       </form>
 
-      <footer>芙SPA · 主理人邀约活动</footer>
+      <footer>FU SPA · 长楹首店主理人体验计划</footer>
     </div>
   </body>
 </html>

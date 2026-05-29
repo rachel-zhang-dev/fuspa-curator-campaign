@@ -3,63 +3,181 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>提交成功 · 芙SPA</title>
+    <title>感谢您的参与 · 芙SPA 长楹首店</title>
     <style>
       :root {
         --bg: #fafaf8;
+        --cream: #f3eee5;
         --text: #2a2620;
         --muted: #8b8278;
         --accent: #c8985e;
         --primary: #2d2823;
+        --border: #e8e2d8;
       }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
       body {
         margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC',
+          'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
         background: var(--bg);
         color: var(--text);
-        padding: 24px;
+        line-height: 1.8;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap {
+        max-width: 580px;
+        margin: 0 auto;
+        padding: 48px 22px 56px;
+      }
+
+      .head {
         text-align: center;
+        margin-bottom: 28px;
       }
-      .card {
-        max-width: 400px;
+
+      .icon {
+        width: 52px;
+        height: 52px;
+        line-height: 52px;
+        margin: 0 auto 16px;
+        border-radius: 50%;
+        background: var(--cream);
+        color: var(--accent);
+        font-size: 26px;
+        font-weight: 600;
       }
-      h1 {
-        font-size: 1.5rem;
-        margin: 0 0 12px;
+
+      .head h1 {
+        margin: 0 0 8px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
       }
-      p {
+
+      .head .sub {
+        margin: 0;
         color: var(--muted);
-        line-height: 1.7;
-        margin: 0 0 24px;
+        font-size: 0.92rem;
       }
-      a {
-        display: inline-block;
-        padding: 14px 28px;
-        background: var(--primary);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 10px;
+
+      .card {
+        background: var(--cream);
+        border-radius: 12px;
+        padding: 22px 22px;
+        margin-bottom: 22px;
         font-size: 0.95rem;
       }
-      .icon {
-        font-size: 48px;
+
+      .card p {
+        margin: 0 0 12px;
+      }
+
+      .card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .card .accent {
         color: var(--accent);
-        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .perks-title {
+        margin: 24px 0 12px;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .perks {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 28px;
+      }
+
+      .perks li {
+        padding: 14px 16px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 8px;
+        font-size: 0.93rem;
+        display: flex;
+        gap: 10px;
+      }
+
+      .perks li::before {
+        content: '·';
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 1.1rem;
+        line-height: 1.2;
+      }
+
+      .closing {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.92rem;
+        margin: 28px 0 32px;
+      }
+
+      .closing strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .signature {
+        text-align: center;
+        font-size: 0.82rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
       }
     </style>
   </head>
   <body>
-    <div class="card">
-      <div class="icon">✓</div>
-      <h1>感谢你的参与</h1>
-      <p>
-        我们已收到你的问卷。主理人礼遇将在审核后，通过你留下的手机号与你联系，实物礼遇将按地址寄送。
-      </p>
-      <a href="./index.html">返回首页</a>
+    <div class="wrap">
+      <div class="head">
+        <div class="icon">✓</div>
+        <h1>感谢您留下真实想法</h1>
+        <p class="sub">您的声音，是下一家芙SPA成长的起点</p>
+      </div>
+
+      <div class="card">
+        <p>
+          <span class="accent">「芙SPA主理人体验计划」</span>
+          为长楹首店小范围邀约机制。
+        </p>
+        <p>
+          我们会结合体验反馈、恢复认可度及共创意愿，邀请少量顾客进入：
+          <span class="accent">「芙SPA主理人体验席」</span>。
+        </p>
+      </div>
+
+      <p class="perks-title">若收到邀约，您将优先参与</p>
+      <ul class="perks">
+        <li>恢复搭子邀请席</li>
+        <li>新精油 / 新项目 / 新手法共创</li>
+        <li>优先预约及限定体验权益</li>
+        <li>下一家芙SPA的成长讨论</li>
+      </ul>
+
+      <div class="closing">
+        谢谢第一批顾客的鼓励与陪伴。<br />
+        <strong>下一家芙SPA，希望带着你的声音一起长大。</strong>
+      </div>
+
+      <p class="signature">FU SPA · 长楹店</p>
     </div>
   </body>
 </html>
